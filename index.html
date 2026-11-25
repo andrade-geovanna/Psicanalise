@@ -1,1 +1,1776 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atendimento Psicanalítico | Wanessa Menezes</title>
+
+<style>
+:root {
+  --verde: #68775f;
+  --verde-escuro: #344235;
+  --verde-claro: #dfe2d2;
+  --fundo: #f8f4ec;
+  --bege: #eee6da;
+  --texto: #30372f;
+  --cinza: #77796f;
+  --borda: #e5ded2;
+  --branco: #fffdf9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
+
+/* MENU LATERAL */
+
+aside {
+  background: linear-gradient(160deg, #dce0d1, #d1d6c5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.logo {
+  width: 190px;
+  height: 190px;
+  object-fit: contain;
+  margin: 0 auto 20px;
+  mix-blend-mode: multiply;
+}
+
+nav {
+  display: grid;
+  gap: 7px;
+}
+
+nav button {
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 13px;
+  border-radius: 10px;
+  color: #465044;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+}
+
+nav button:hover,
+nav button.active {
+  background: #aeb99a70;
+  color: var(--verde-escuro);
+}
+
+nav .icone {
+  width: 23px;
+  font-size: 19px;
+  text-align: center;
+}
+
+.contador {
+  margin-left: auto;
+  background: #aeb99a;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 12px;
+}
+
+.sair {
+  margin-top: auto;
+}
+
+/* CONTEÚDO */
+
+main {
+  padding: 25px 34px;
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+  min-width: 0;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  height: 60px;
+  margin-bottom: 25px;
+}
+
+.perfil-mini {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #a9b09b;
+  display: grid;
+  place-items: center;
+  color: white;
+  font: 23px Georgia;
+}
+
+.perfil-mini small {
+  display: block;
+  color: var(--cinza);
+  margin-top: 4px;
+}
+
+h1 {
+  font: 44px Georgia, serif;
+  color: var(--verde-escuro);
+  font-weight: normal;
+  margin: 0 0 8px;
+}
+
+.boas-vindas {
+  margin-bottom: 30px;
+}
+
+.boas-vindas p {
+  color: #586054;
+  font-size: 17px;
+  margin: 0;
+}
+
+/* CONTROLE DAS ABAS */
+
+.pagina {
+  display: none;
+}
+
+.pagina.ativa {
+  display: block;
+}
+
+.titulo-pagina {
+  font: 32px Georgia, serif;
+  color: var(--verde-escuro);
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.descricao {
+  color: var(--cinza);
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+/* PAINÉIS */
+
+.grade {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 23px;
+}
+
+.coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+.painel {
+  background: #ffffff38;
+  border: 1px solid var(--borda);
+  border-radius: 13px;
+  padding: 20px;
+}
+
+.cabecalho-painel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.cabecalho-painel h2 {
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.cabecalho-painel a {
+  margin-left: auto;
+  color: var(--verde);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* INDICADORES */
+
+.estatisticas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.estatistica {
+  padding: 16px;
+  border-radius: 10px;
+  background: #e7e7d9;
+  min-height: 135px;
+}
+
+.estatistica:nth-child(2) {
+  background: #f0e8dc;
+}
+
+.estatistica:nth-child(3) {
+  background: #eee4d8;
+}
+
+.estatistica:nth-child(4) {
+  background: #e8eadd;
+}
+
+.estatistica b {
+  display: block;
+  font: 31px Georgia;
+  margin: 12px 0 4px;
+  color: var(--verde-escuro);
+}
+
+.estatistica span {
+  font-size: 13px;
+  color: #5e6459;
+}
+
+/* CONSULTAS */
+
+.item-consulta {
+  display: grid;
+  grid-template-columns: 55px 12px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--borda);
+  font-size: 14px;
+}
+
+.item-consulta:last-child {
+  border: 0;
+}
+
+.ponto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9eac8c;
+}
+
+.ponto.espera {
+  background: #e9c987;
+}
+
+.subtexto {
+  color: var(--cinza);
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.status {
+  border-radius: 20px;
+  background: #e6e9dc;
+  padding: 5px 11px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.status.espera {
+  background: #f6e8c9;
+  color: #856a3f;
+}
+
+/* SOLICITAÇÕES */
+
+.item-solicitacao {
+  display: grid;
+  grid-template-columns: 17px 1fr auto;
+  gap: 13px;
+  align-items: start;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--borda);
+}
+
+.item-solicitacao:last-child {
+  border: 0;
+}
+
+.ponto-prioridade {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #e8b4a9;
+  margin-top: 3px;
+}
+
+.ponto-normal {
+  background: #f0d9aa;
+}
+
+.item-solicitacao small {
+  display: block;
+  color: var(--cinza);
+  margin-top: 6px;
+}
+
+.prioridade {
+  color: #c45d52;
+}
+
+.item-solicitacao button {
+  margin-top: 5px;
+}
+
+/* FORMULÁRIOS E BOTÕES */
+
+.barra {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+input, select, textarea {
+  border: 1px solid var(--borda);
+  background: var(--branco);
+  border-radius: 8px;
+  padding: 11px;
+  font: 14px "Segoe UI";
+  color: var(--texto);
+}
+
+.barra input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.botao {
+  border: 0;
+  background: var(--verde);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.botao:hover {
+  background: #52634d;
+}
+
+.botao-secundario {
+  background: #e7e8dc;
+  color: #455341;
+}
+
+.botao-perigo {
+  background: #b96b5f;
+}
+
+.campo {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.campo label {
+  font-size: 13px;
+  color: #596054;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+}
+
+/* TABELAS */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 13px 10px;
+  border-bottom: 1px solid var(--borda);
+}
+
+th {
+  color: var(--cinza);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+tr:last-child td {
+  border: 0;
+}
+
+.tabela {
+  overflow-x: auto;
+}
+
+/* RELATÓRIOS */
+
+.cartoes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.cartao {
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  padding: 17px;
+  border-radius: 10px;
+}
+
+.barra-progresso {
+  height: 9px;
+  background: #e7e8dc;
+  border-radius: 10px;
+  margin-top: 13px;
+  overflow: hidden;
+}
+
+.barra-progresso div {
+  height: 100%;
+  background: #87977b;
+}
+
+/* MODAL */
+
+.fundo-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #20282066;
+  z-index: 20;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.fundo-modal.aberto {
+  display: flex;
+}
+
+.modal {
+  background: var(--fundo);
+  border-radius: 14px;
+  padding: 24px;
+  width: min(480px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.modal h2 {
+  font: 25px Georgia;
+  color: var(--verde-escuro);
+  font-weight: normal;
+  margin-top: 0;
+}
+
+.acoes-modal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--verde-escuro);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 9px;
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
+  z-index: 30;
+  font-size: 13px;
+}
+
+.toast.mostrar {
+  opacity: 1;
+}
+
+/* RESPONSIVIDADE */
+
+@media(max-width: 1000px) {
+  .layout {
+    grid-template-columns: 210px 1fr;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media(max-width: 680px) {
+  .layout {
+    display: block;
+  }
+
+  aside {
+    min-height: auto;
+    padding: 8px;
+  }
+
+  .logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 8px;
+  }
+
+  nav {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  nav button {
+    white-space: nowrap;
+    padding: 9px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .sair {
+    display: none;
+  }
+
+  main {
+    padding: 14px;
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  .estatisticas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .item-consulta {
+    grid-template-columns: 45px 10px 1fr;
+    gap: 8px;
+  }
+
+  .item-consulta .status {
+    grid-column: 3;
+    justify-self: start;
+  }
+
+  .cartoes {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ACESSO E ÁREA DO PACIENTE */
+body:not(.logado) .layout,
+body:not(.logado) #areaPaciente { display: none !important; }
+
+.tela-acesso {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8f4ec, #e8eadd);
+}
+.acesso-card {
+  width: min(520px, 100%);
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0 12px 35px #34423512;
+}
+.acesso-marca { text-align: center; margin-bottom: 26px; }
+.acesso-marca img { width: 115px; height: 115px; object-fit: contain; mix-blend-mode: multiply; }
+.acesso-marca h1 { font-size: 30px; margin-top: 8px; }
+.acesso-marca p { color: var(--cinza); margin: 8px 0 0; }
+.opcoes-acesso { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.opcao-acesso {
+  border: 1px solid var(--borda); background: #f5f3eb; color: var(--texto);
+  border-radius: 12px; padding: 20px 14px; cursor: pointer; text-align: left;
+  min-height: 145px; transition: .2s;
+}
+.opcao-acesso:hover { border-color: var(--verde); background: #edf0e7; }
+.opcao-acesso strong { display:block; color: var(--verde-escuro); font-size: 17px; margin: 9px 0 5px; }
+.opcao-acesso span { font-size: 13px; color: var(--cinza); line-height: 1.45; }
+.icone-acesso { font-size: 27px; }
+.form-acesso { display: grid; gap: 12px; }
+.form-acesso .campo { margin: 0; }
+.link-acesso { border: 0; background: none; color: var(--verde); cursor: pointer; padding: 10px; }
+.aviso-demo { background: #f1efe7; border-radius: 8px; padding: 10px; color: #646b5d; font-size: 12px; line-height: 1.5; }
+#areaPaciente { min-height: 100vh; }
+.topo-paciente {
+  background: #dce0d1; padding: 15px 5%; display:flex; align-items:center;
+  justify-content:space-between; gap:15px; flex-wrap:wrap;
+}
+.marca-paciente { display:flex; align-items:center; gap:12px; color:var(--verde-escuro); }
+.marca-paciente img { width:54px; height:54px; object-fit:contain; mix-blend-mode:multiply; }
+.marca-paciente strong { font: 22px Georgia, serif; }
+.nav-paciente { display:flex; gap:7px; flex-wrap:wrap; }
+.nav-paciente button {
+  border:0; background:transparent; color:#465044; padding:10px 12px;
+  border-radius:8px; cursor:pointer; font-size:13px;
+}
+.nav-paciente button:hover, .nav-paciente button.active { background:#aeb99a70; }
+.conteudo-paciente { max-width:1100px; margin:auto; padding:38px 24px; }
+.secao-paciente { display:none; }
+.secao-paciente.ativa { display:block; }
+.hero-paciente {
+  background:linear-gradient(120deg,#e8eadd,#f2eadf); border:1px solid var(--borda);
+  border-radius:16px; padding:38px; margin-bottom:22px;
+}
+.hero-paciente h1 { font-size:40px; max-width:650px; }
+.hero-paciente p { color:#596054; max-width:650px; line-height:1.7; }
+.grade-paciente { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+.card-paciente {
+  background:#fffdf9; border:1px solid var(--borda); border-radius:13px; padding:22px;
+}
+.card-paciente h3 { margin-top:0; color:var(--verde-escuro); font-weight:500; }
+.card-paciente p { color:var(--cinza); line-height:1.6; font-size:14px; }
+.lista-paciente { display:grid; gap:12px; }
+.item-paciente { border:1px solid var(--borda); border-radius:10px; padding:15px; background:#fffdf9; }
+.item-paciente small { display:block; color:var(--cinza); margin-top:6px; }
+.rodape-paciente { text-align:center; color:var(--cinza); padding:25px; font-size:12px; }
+@media(max-width:680px) {
+  .acesso-card { padding:23px; }
+  .opcoes-acesso, .grade-paciente { grid-template-columns:1fr; }
+  .hero-paciente { padding:25px; }
+  .hero-paciente h1 { font-size:32px; }
+  .topo-paciente { justify-content:center; }
+  .nav-paciente { justify-content:center; }
+  .conteudo-paciente { padding:24px 15px; }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- TELA INICIAL DE ACESSO -->
+<section class="tela-acesso" id="telaAcesso">
+  <div class="acesso-card">
+    <div class="acesso-marca">
+      <img src="assets/logo.png" alt="Identidade visual de Wanessa Menezes">
+      <h1>Atendimento Psicanalítico</h1>
+      <p>Wanessa Menezes</p>
+    </div>
+    <div id="conteudoAcesso">
+      <h2 style="font:25px Georgia;color:var(--verde-escuro);text-align:center">Bem-vindo(a)!</h2>
+      <p style="text-align:center;color:var(--cinza);margin-bottom:22px">Como deseja acessar?</p>
+      <div class="opcoes-acesso">
+        <button class="opcao-acesso" onclick="mostrarAcesso('paciente')">
+          <span class="icone-acesso">♙</span>
+          <strong>Sou paciente</strong>
+          <span>Conheça os atendimentos e acesse sua área pessoal.</span>
+        </button>
+        <button class="opcao-acesso" onclick="mostrarAcesso('profissional')">
+          <span class="icone-acesso">✧</span>
+          <strong>Sou a psicanalista</strong>
+          <span>Acessar o painel de gerenciamento profissional.</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+
+<aside>
+
+<img src="assets/logo.png" class="logo" alt="Logo Wanessa Menezes">
+
+<nav>
+<button class="active" data-pagina="inicio">
+<span class="icone">⌂</span> Início
+</button>
+
+<button data-pagina="agenda">
+<span class="icone">▦</span> Agenda
+</button>
+
+<button data-pagina="solicitacoes">
+<span class="icone">☏</span> Solicitações
+<span class="contador" id="contador">3</span>
+</button>
+
+<button data-pagina="pacientes">
+<span class="icone">♧</span> Pacientes
+</button>
+
+<button data-pagina="relatorios">
+<span class="icone">▥</span> Relatórios
+</button>
+
+<button data-pagina="perfil">
+<span class="icone">♙</span> Perfil
+</button>
+</nav>
+
+<button class="sair" id="sair">⇥ Sair</button>
+
+</aside>
+
+<main>
+
+<header>
+<div class="perfil-mini">
+<div class="avatar">W</div>
+<div>
+<strong id="nomeCabecalho">Wanessa Menezes</strong>
+<small>Área profissional</small>
+</div>
+</div>
+</header>
+
+<!-- INÍCIO -->
+
+<section class="pagina ativa" id="pagina-inicio">
+
+<div class="boas-vindas">
+<h1>Olá, Wanessa!</h1>
+<p>Que bom te ver por aqui. Vamos cuidar hoje do que importa.</p>
+</div>
+
+<div class="grade">
+
+<div class="coluna">
+
+<section class="painel">
+<div class="cabecalho-painel">
+<h2>▦ Resumo do dia</h2>
+</div>
+
+<div class="estatisticas">
+
+<div class="estatistica">
+<span>▦</span>
+<b id="totalConsultas">5</b>
+<span>consultas de hoje</span>
+</div>
+
+<div class="estatistica">
+<span>☏</span>
+<b id="totalSolicitacoes">3</b>
+<span>solicitações pendentes</span>
+</div>
+
+<div class="estatistica">
+<span>♧</span>
+<b id="totalPacientes">6</b>
+<span>pacientes ativos</span>
+</div>
+
+<div class="estatistica">
+<span>◷</span>
+<b>1</b>
+<span>atendimento de casal</span>
+</div>
+
+</div>
+</section>
+
+<section class="painel">
+<div class="cabecalho-painel">
+<h2>▦ Próximas consultas</h2>
+<a href="#" data-ir="agenda">Ver agenda completa →</a>
+</div>
+<div id="consultasInicio"></div>
+</section>
+
+</div>
+
+<div class="coluna">
+
+<section class="painel">
+<div class="cabecalho-painel">
+<h2>☏ Solicitações pendentes</h2>
+<a href="#" data-ir="solicitacoes">Ver todas →</a>
+</div>
+<div id="solicitacoesInicio"></div>
+</section>
+
+<section class="painel" style="background:#e8e8da">
+<h2 style="font:25px Georgia">Cuidar também<br>é estar presente.</h2>
+<p>Você faz a diferença na vida de muitas pessoas.</p>
+</section>
+
+</div>
+</div>
+</section>
+
+<!-- AGENDA -->
+
+<section class="pagina" id="pagina-agenda">
+
+<h2 class="titulo-pagina">Agenda</h2>
+<p class="descricao">Consulte e organize os horários de atendimento.</p>
+
+<div class="barra">
+<input type="date" id="dataAgenda" value="2026-11-18">
+
+<select id="filtroAgenda">
+<option value="Todos">Todas as modalidades</option>
+<option value="Individual">Individual</option>
+<option value="Casal">Casal</option>
+</select>
+
+<button class="botao" id="novaConsulta">+ Nova consulta</button>
+</div>
+
+<section class="painel">
+<div class="cabecalho-painel">
+<h2>Consultas agendadas</h2>
+</div>
+<div id="listaAgenda"></div>
+</section>
+
+</section>
+
+<!-- SOLICITAÇÕES -->
+
+<section class="pagina" id="pagina-solicitacoes">
+
+<h2 class="titulo-pagina">Solicitações</h2>
+<p class="descricao">Pedidos enviados pelos pacientes.</p>
+
+<div class="barra">
+<select id="filtroSolicitacao">
+<option value="Todas">Todas as solicitações</option>
+<option value="Prioridade">Prioridade</option>
+<option value="Antecipação">Antecipação</option>
+<option value="Novo atendimento">Novos atendimentos</option>
+</select>
+</div>
+
+<section class="painel">
+<div id="listaSolicitacoes"></div>
+</section>
+
+</section>
+
+<!-- PACIENTES -->
+
+<section class="pagina" id="pagina-pacientes">
+
+<h2 class="titulo-pagina">Pacientes</h2>
+<p class="descricao">Visualize e gerencie os cadastros.</p>
+
+<div class="barra">
+<input id="pesquisaPaciente" placeholder="Pesquisar paciente pelo nome...">
+<button class="botao" id="novoPaciente">+ Novo paciente</button>
+</div>
+
+<section class="painel">
+<div class="tabela">
+<table>
+<thead>
+<tr>
+<th>Nome</th>
+<th>Contato fictício</th>
+<th>Modalidade</th>
+<th>Situação</th>
+<th>Ação</th>
+</tr>
+</thead>
+<tbody id="tabelaPacientes"></tbody>
+</table>
+</div>
+</section>
+
+</section>
+
+<!-- RELATÓRIOS -->
+
+<section class="pagina" id="pagina-relatorios">
+
+<h2 class="titulo-pagina">Relatórios</h2>
+<p class="descricao">Indicadores demonstrativos de atendimentos.</p>
+
+<div class="estatisticas" style="margin-bottom:20px">
+
+<div class="estatistica">
+<span>▦</span>
+<b>24</b>
+<span>consultas no mês</span>
+</div>
+
+<div class="estatistica">
+<span>✓</span>
+<b>20</b>
+<span>realizadas</span>
+</div>
+
+<div class="estatistica">
+<span>◷</span>
+<b>3</b>
+<span>aguardando</span>
+</div>
+
+<div class="estatistica">
+<span>↗</span>
+<b>83%</b>
+<span>taxa de realização</span>
+</div>
+
+</div>
+
+<section class="painel">
+<div class="cabecalho-painel">
+<h2>Atendimentos por modalidade</h2>
+</div>
+
+<div class="cartoes">
+
+<div class="cartao">
+<strong>Consultas individuais</strong>
+<p>18 atendimentos neste mês</p>
+<div class="barra-progresso">
+<div style="width:75%"></div>
+</div>
+</div>
+
+<div class="cartao">
+<strong>Terapia de casal</strong>
+<p>6 atendimentos neste mês</p>
+<div class="barra-progresso">
+<div style="width:25%"></div>
+</div>
+</div>
+
+</div>
+</section>
+
+</section>
+
+<!-- PERFIL -->
+
+<section class="pagina" id="pagina-perfil">
+
+<h2 class="titulo-pagina">Perfil profissional</h2>
+<p class="descricao">Informações da profissional.</p>
+
+<section class="painel" style="max-width:600px">
+
+<div class="perfil-mini" style="margin-bottom:25px">
+<div class="avatar" style="width:65px;height:65px">W</div>
+<div>
+<strong id="nomePerfil">Wanessa Menezes</strong>
+<small>Psicanalista</small>
+</div>
+</div>
+
+<div class="campo">
+<label>Nome profissional</label>
+<input id="campoNome" value="Wanessa Menezes">
+</div>
+
+<div class="campo">
+<label>Área de atuação</label>
+<input value="Psicanálise e Psicoterapia">
+</div>
+
+<div class="campo">
+<label>E-mail fictício</label>
+<input value="contato@exemplo.com">
+</div>
+
+<button class="botao" id="salvarPerfil">Salvar alterações</button>
+
+</section>
+</section>
+
+</main>
+</div>
+
+
+<!-- ÁREA DO PACIENTE -->
+<div id="areaPaciente">
+  <div class="topo-paciente">
+    <div class="marca-paciente">
+      <img src="assets/logo.png" alt="Logo">
+      <strong>Atendimento Psicanalítico</strong>
+    </div>
+    <nav class="nav-paciente">
+      <button class="active" data-secao-paciente="inicio">Início</button>
+      <button data-secao-paciente="sobre">Sobre</button>
+      <button data-secao-paciente="solicitar">Solicitar atendimento</button>
+      <button data-secao-paciente="agendamentos">Meus agendamentos</button>
+      <button data-secao-paciente="perfil">Meu perfil</button>
+      <button onclick="sairConta()">Sair</button>
+    </nav>
+  </div>
+
+  <main class="conteudo-paciente">
+    <section class="secao-paciente ativa" id="secao-paciente-inicio">
+      <div class="hero-paciente">
+        <h1 id="saudacaoPaciente">Um espaço de escuta e acolhimento.</h1>
+        <p>Este é seu espaço para conhecer o trabalho da psicanalista Wanessa Menezes, solicitar um atendimento e acompanhar suas solicitações.</p>
+        <button class="botao" onclick="abrirSecaoPaciente('solicitar')">Solicitar atendimento</button>
+      </div>
+      <div class="grade-paciente">
+        <article class="card-paciente">
+          <h3>Conheça o atendimento</h3>
+          <p>Saiba mais sobre a proposta de atendimento e as modalidades disponíveis.</p>
+          <button class="botao botao-secundario" onclick="abrirSecaoPaciente('sobre')">Saiba mais</button>
+        </article>
+        <article class="card-paciente">
+          <h3>Acompanhe suas solicitações</h3>
+          <p>Consulte os pedidos enviados e os horários registrados para você.</p>
+          <button class="botao botao-secundario" onclick="abrirSecaoPaciente('agendamentos')">Ver meus agendamentos</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="secao-paciente" id="secao-paciente-sobre">
+      <h2 class="titulo-pagina">Sobre o atendimento</h2>
+      <p class="descricao">Informações sobre a profissional e as modalidades.</p>
+      <div class="card-paciente">
+        <h3>Wanessa Menezes — Psicanalista</h3>
+        <p>Um espaço de escuta, diálogo e acolhimento, respeitando a singularidade de cada pessoa.</p>
+        <h3>Modalidades de atendimento</h3>
+        <p><strong>Individual:</strong> atendimento direcionado às questões e necessidades de cada pessoa.</p>
+        <p><strong>Casal:</strong> espaço de diálogo para questões relacionadas à vida a dois.</p>
+        <p class="subtexto">Texto demonstrativo do protótipo. Informações profissionais podem ser ajustadas pela responsável.</p>
+      </div>
+    </section>
+
+    <section class="secao-paciente" id="secao-paciente-solicitar">
+      <h2 class="titulo-pagina">Solicitar atendimento</h2>
+      <p class="descricao">Preencha os dados abaixo. Sua solicitação será encaminhada para análise da profissional.</p>
+      <div class="card-paciente" style="max-width:650px">
+        <form id="formSolicitar" class="form-acesso">
+          <div class="campo">
+            <label>Modalidade desejada</label>
+            <select id="modalidadePaciente" required>
+              <option value="Individual">Individual</option>
+              <option value="Casal">Casal</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label>Data de preferência</label>
+            <input type="date" id="dataPreferida" required>
+          </div>
+          <div class="campo">
+            <label>Horário de preferência</label>
+            <select id="horarioPreferido" required>
+              <option value="">Selecione</option>
+              <option>Manhã</option><option>Tarde</option><option>Noite</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label>Mensagem (opcional)</label>
+            <textarea id="mensagemPaciente" rows="3" placeholder="Se desejar, informe algo sobre sua disponibilidade."></textarea>
+          </div>
+          <button class="botao" type="submit">Enviar solicitação</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="secao-paciente" id="secao-paciente-agendamentos">
+      <h2 class="titulo-pagina">Meus agendamentos</h2>
+      <p class="descricao">Acompanhe suas solicitações e consultas registradas.</p>
+      <div class="lista-paciente" id="listaMeusAgendamentos"></div>
+    </section>
+
+    <section class="secao-paciente" id="secao-paciente-perfil">
+      <h2 class="titulo-pagina">Meu perfil</h2>
+      <p class="descricao">Seus dados de cadastro.</p>
+      <div class="card-paciente" style="max-width:600px">
+        <div class="campo"><label>Nome completo</label><input id="perfilPacienteNome" disabled></div>
+        <div class="campo"><label>E-mail</label><input id="perfilPacienteEmail" disabled></div>
+        <div class="campo"><label>Contato</label><input id="perfilPacienteContato" disabled></div>
+      </div>
+    </section>
+  </main>
+  <footer class="rodape-paciente">Atendimento Psicanalítico — Wanessa Menezes</footer>
+</div>
+
+
+<!-- MODAL -->
+
+<div class="fundo-modal" id="fundoModal">
+<div class="modal">
+
+<h2 id="tituloModal">Cadastro</h2>
+<div id="conteudoModal"></div>
+
+<div class="acoes-modal">
+<button class="botao botao-secundario" id="cancelarModal">Cancelar</button>
+<button class="botao" id="confirmarModal">Salvar</button>
+</div>
+
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+// DADOS FICTÍCIOS
+
+let consultas = [
+ {hora:"08:00",nome:"Mariana Alves",tipo:"Individual",status:"Confirmada",data:"2026-11-18"},
+ {hora:"10:00",nome:"Lucas Ferreira",tipo:"Individual",status:"Confirmada",data:"2026-11-18"},
+ {hora:"14:00",nome:"Camila Santos e Rafael Lima",tipo:"Casal",status:"Confirmada",data:"2026-11-18"},
+ {hora:"16:00",nome:"Juliana Costa",tipo:"Individual",status:"Confirmada",data:"2026-11-18"},
+ {hora:"18:00",nome:"Felipe Rocha",tipo:"Individual",status:"Em espera",data:"2026-11-18"},
+ {hora:"09:00",nome:"Ana Beatriz",tipo:"Individual",status:"Confirmada",data:"2026-11-19"},
+ {hora:"15:00",nome:"Pedro e Laura",tipo:"Casal",status:"Confirmada",data:"2026-11-19"}
+];
+
+let solicitacoes = [
+ {tipo:"Prioridade",nome:"Ana Beatriz",hora:"Hoje às 11:32",descricao:"Gostaria de conversar sobre a possibilidade de um horário mais próximo."},
+ {tipo:"Antecipação",nome:"Carlos Eduardo",hora:"Hoje às 10:17",descricao:"Pergunta se existe algum horário disponível antes da consulta marcada."},
+ {tipo:"Antecipação",nome:"Juliana Souza",hora:"Hoje às 09:48",descricao:"Solicita antecipação do próximo atendimento."}
+];
+
+let pacientes = [
+ {nome:"Mariana Alves",contato:"(83) 9XXXX-1001",tipo:"Individual",situacao:"Ativo"},
+ {nome:"Lucas Ferreira",contato:"(83) 9XXXX-1002",tipo:"Individual",situacao:"Ativo"},
+ {nome:"Camila Santos",contato:"(83) 9XXXX-1003",tipo:"Casal",situacao:"Ativo"},
+ {nome:"Rafael Lima",contato:"(83) 9XXXX-1004",tipo:"Casal",situacao:"Ativo"},
+ {nome:"Juliana Costa",contato:"(83) 9XXXX-1005",tipo:"Individual",situacao:"Ativo"},
+ {nome:"Felipe Rocha",contato:"(83) 9XXXX-1006",tipo:"Individual",situacao:"Ativo"}
+];
+
+const $ = id => document.getElementById(id);
+
+// NOTIFICAÇÃO
+
+function mensagem(texto) {
+  const toast = $("toast");
+  toast.textContent = texto;
+  toast.classList.add("mostrar");
+
+  setTimeout(() => {
+    toast.classList.remove("mostrar");
+  }, 2500);
+}
+
+// NAVEGAÇÃO ENTRE ABAS
+
+function abrirPagina(nome) {
+
+  document.querySelectorAll(".pagina").forEach(p => {
+    p.classList.remove("ativa");
+  });
+
+  $("pagina-" + nome).classList.add("ativa");
+
+  document.querySelectorAll("nav button").forEach(b => {
+    b.classList.toggle("active", b.dataset.pagina === nome);
+  });
+
+  if (nome === "agenda") renderizarAgenda();
+  if (nome === "solicitacoes") renderizarSolicitacoes();
+  if (nome === "pacientes") renderizarPacientes();
+
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+document.querySelectorAll("nav button").forEach(botao => {
+  botao.addEventListener("click", () => {
+    abrirPagina(botao.dataset.pagina);
+  });
+});
+
+document.querySelectorAll("[data-ir]").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    abrirPagina(link.dataset.ir);
+  });
+});
+
+// CONSULTAS
+
+function htmlConsulta(c) {
+  return `
+  <div class="item-consulta">
+    <span>${c.hora}</span>
+    <i class="ponto ${c.status === "Em espera" ? "espera" : ""}"></i>
+    <div>
+      <strong>${c.nome}</strong>
+      <div class="subtexto">Consulta ${c.tipo.toLowerCase()}</div>
+    </div>
+    <span class="status ${c.status === "Em espera" ? "espera" : ""}">
+      ${c.status}
+    </span>
+  </div>`;
+}
+
+function renderizarInicio() {
+
+  $("consultasInicio").innerHTML =
+    consultas.filter(c => c.data === "2026-11-18")
+    .map(htmlConsulta).join("");
+
+  $("solicitacoesInicio").innerHTML =
+    solicitacoes.slice(0,3).map((s,i) => `
+    <div class="item-solicitacao" data-detalhe="${i}">
+      <i class="ponto-prioridade ${s.tipo === "Prioridade" ? "" : "ponto-normal"}"></i>
+      <div>
+        <strong class="${s.tipo === "Prioridade" ? "prioridade" : ""}">
+          ${s.tipo}
+        </strong>
+        <small>Paciente: ${s.nome}</small>
+        <small>${s.hora}</small>
+      </div>
+      <span>›</span>
+    </div>`).join("");
+
+  $("totalConsultas").textContent =
+    consultas.filter(c => c.data === "2026-11-18").length;
+
+  $("totalSolicitacoes").textContent = solicitacoes.length;
+  $("totalPacientes").textContent = pacientes.length;
+  $("contador").textContent = solicitacoes.length;
+}
+
+// AGENDA
+
+function renderizarAgenda() {
+
+  const data = $("dataAgenda").value;
+  const filtro = $("filtroAgenda").value;
+
+  const lista = consultas.filter(c =>
+    c.data === data &&
+    (filtro === "Todos" || c.tipo === filtro)
+  );
+
+  $("listaAgenda").innerHTML = lista.length
+    ? lista.map(htmlConsulta).join("")
+    : "<p>Nenhuma consulta encontrada nesta data.</p>";
+}
+
+$("dataAgenda").addEventListener("change", renderizarAgenda);
+$("filtroAgenda").addEventListener("change", renderizarAgenda);
+
+// SOLICITAÇÕES
+
+function renderizarSolicitacoes() {
+
+  const filtro = $("filtroSolicitacao").value;
+
+  const lista = solicitacoes
+    .map((s,i) => ({...s, indice:i}))
+    .filter(s => filtro === "Todas" || s.tipo === filtro);
+
+  $("listaSolicitacoes").innerHTML = lista.length
+    ? lista.map(s => `
+      <div class="item-solicitacao">
+        <i class="ponto-prioridade ${s.tipo === "Prioridade" ? "" : "ponto-normal"}"></i>
+        <div>
+          <strong class="${s.tipo === "Prioridade" ? "prioridade" : ""}">
+            ${s.tipo}
+          </strong>
+          <small>Paciente: ${s.nome}</small>
+          <small>${s.hora}</small>
+          <p class="subtexto">${s.descricao}</p>
+        </div>
+        <button class="botao botao-secundario" onclick="concluirSolicitacao(${s.indice})">
+          Concluir
+        </button>
+      </div>
+    `).join("")
+    : "<p>Não há solicitações nesta categoria.</p>";
+}
+
+$("filtroSolicitacao").addEventListener("change", renderizarSolicitacoes);
+
+function concluirSolicitacao(indice) {
+  solicitacoes.splice(indice,1);
+  renderizarSolicitacoes();
+  renderizarInicio();
+  mensagem("Solicitação concluída!");
+}
+
+// PACIENTES
+
+function renderizarPacientes() {
+
+  const pesquisa = $("pesquisaPaciente").value.toLowerCase();
+
+  const lista = pacientes
+    .map((p,i) => ({...p,indice:i}))
+    .filter(p => p.nome.toLowerCase().includes(pesquisa));
+
+  $("tabelaPacientes").innerHTML = lista.map(p => `
+    <tr>
+      <td>${p.nome}</td>
+      <td>${p.contato}</td>
+      <td>${p.tipo}</td>
+      <td><span class="status">${p.situacao}</span></td>
+      <td>
+       <button class="botao botao-secundario"
+  onclick="detalhesPaciente(${p.indice})">
+  Detalhes
+</button>
+
+<button class="botao botao-perigo"
+  onclick="excluirPaciente(${p.indice})">
+  Excluir
+</button>
+      </td>
+    </tr>
+  `).join("") || `
+    <tr><td colspan="5">Nenhum paciente encontrado.</td></tr>
+  `;
+
+  $("totalPacientes").textContent = pacientes.length;
+}
+
+$("pesquisaPaciente").addEventListener("input", renderizarPacientes);
+
+function detalhesPaciente(indice) {
+  const p = pacientes[indice];
+
+  abrirModal(
+    p.nome,
+    `
+      <p><strong>Contato:</strong> ${p.contato}</p>
+      <p><strong>Modalidade:</strong> ${p.tipo}</p>
+      <p><strong>Situação:</strong> ${p.situacao}</p>
+      <p class="subtexto">Informações fictícias para demonstração.</p>
+    `,
+    false
+  );
+}
+
+
+function excluirPaciente(indice) {
+  const confirmar = confirm("Deseja realmente excluir este paciente?");
+
+  if (confirmar) {
+    pacientes.splice(indice, 1);
+    renderizarPacientes();
+    renderizarInicio();
+    mensagem("Paciente excluído!");
+  }
+}
+
+// CADASTRO DE PACIENTES
+
+$("novoPaciente").addEventListener("click", () => {
+
+  abrirModal("Cadastrar paciente", `
+    <div class="campo">
+      <label>Nome completo</label>
+      <input id="novoNome" placeholder="Nome fictício">
+    </div>
+
+    <div class="campo">
+      <label>Contato fictício</label>
+      <input id="novoContato" placeholder="(00) 90000-0000">
+    </div>
+
+    <div class="campo">
+      <label>Modalidade</label>
+      <select id="novoTipo">
+        <option>Individual</option>
+        <option>Casal</option>
+      </select>
+    </div>
+  `);
+
+  $("confirmarModal").onclick = () => {
+
+    const nome = $("novoNome").value.trim();
+
+    if (!nome) {
+      mensagem("Informe o nome do paciente.");
+      return;
+    }
+
+    pacientes.push({
+      nome,
+      contato: $("novoContato").value || "Não informado",
+      tipo: $("novoTipo").value,
+      situacao: "Ativo"
+    });
+
+    fecharModal();
+    renderizarPacientes();
+    renderizarInicio();
+
+    mensagem("Paciente cadastrado!");
+  };
+});
+
+// CADASTRO DE CONSULTAS
+
+$("novaConsulta").addEventListener("click", () => {
+
+  abrirModal("Nova consulta", `
+    <div class="campo">
+      <label>Nome do paciente</label>
+      <input id="consultaNome" placeholder="Nome fictício">
+    </div>
+
+    <div class="campo">
+      <label>Data</label>
+      <input id="consultaData" type="date" value="2026-11-18">
+    </div>
+
+    <div class="campo">
+      <label>Horário</label>
+      <input id="consultaHora" type="time">
+    </div>
+
+    <div class="campo">
+      <label>Modalidade</label>
+      <select id="consultaTipo">
+        <option>Individual</option>
+        <option>Casal</option>
+      </select>
+    </div>
+  `);
+
+  $("confirmarModal").onclick = () => {
+
+    const nome = $("consultaNome").value.trim();
+    const data = $("consultaData").value;
+    const hora = $("consultaHora").value;
+
+    if (!nome || !data || !hora) {
+      mensagem("Preencha os campos obrigatórios.");
+      return;
+    }
+
+    consultas.push({
+      nome,
+      data,
+      hora,
+      tipo: $("consultaTipo").value,
+      status: "Confirmada"
+    });
+
+    fecharModal();
+    renderizarAgenda();
+    renderizarInicio();
+
+    mensagem("Consulta cadastrada!");
+  };
+});
+
+// MODAL
+
+function abrirModal(titulo, conteudo, salvar = true) {
+
+  $("tituloModal").textContent = titulo;
+  $("conteudoModal").innerHTML = conteudo;
+
+  $("confirmarModal").style.display =
+    salvar ? "inline-block" : "none";
+
+  $("fundoModal").classList.add("aberto");
+}
+
+function fecharModal() {
+  $("fundoModal").classList.remove("aberto");
+}
+
+$("cancelarModal").addEventListener("click", fecharModal);
+
+$("fundoModal").addEventListener("click", e => {
+  if (e.target === $("fundoModal")) fecharModal();
+});
+
+// PERFIL
+
+$("salvarPerfil").addEventListener("click", () => {
+
+  const nome = $("campoNome").value.trim();
+
+  if (!nome) {
+    mensagem("Informe o nome profissional.");
+    return;
+  }
+
+  $("nomePerfil").textContent = nome;
+  $("nomeCabecalho").textContent = nome;
+
+  mensagem("Perfil atualizado!");
+});
+
+// SAIR
+
+$("sair").addEventListener("click", () => {
+  sairConta();
+});
+
+
+// ACESSO, CADASTRO E ÁREA DO PACIENTE
+let contasPacientes = [];
+let contaAtual = null;
+
+function voltarAcesso() {
+  $("conteudoAcesso").innerHTML = `
+    <h2 style="font:25px Georgia;color:var(--verde-escuro);text-align:center">Bem-vindo(a)!</h2>
+    <p style="text-align:center;color:var(--cinza);margin-bottom:22px">Como deseja acessar?</p>
+    <div class="opcoes-acesso">
+      <button class="opcao-acesso" onclick="mostrarAcesso('paciente')">
+        <span class="icone-acesso">♙</span><strong>Sou paciente</strong>
+        <span>Conheça os atendimentos e acesse sua área pessoal.</span>
+      </button>
+      <button class="opcao-acesso" onclick="mostrarAcesso('profissional')">
+        <span class="icone-acesso">✧</span><strong>Sou a psicanalista</strong>
+        <span>Acessar o painel de gerenciamento profissional.</span>
+      </button>
+    </div>`;
+}
+
+function mostrarAcesso(tipo) {
+  if (tipo === "paciente") {
+    $("conteudoAcesso").innerHTML = `
+      <h2 style="font:25px Georgia;color:var(--verde-escuro)">Acesso do paciente</h2>
+      <p class="descricao">Entre na sua conta ou faça seu cadastro.</p>
+      <div class="form-acesso">
+        <div class="campo"><label>E-mail</label><input id="loginPacienteEmail" type="email" placeholder="seu@email.com"></div>
+        <div class="campo"><label>Senha</label><input id="loginPacienteSenha" type="password" placeholder="Sua senha"></div>
+        <button class="botao" onclick="entrarPaciente()">Entrar</button>
+        <button class="botao botao-secundario" onclick="mostrarCadastroPaciente()">Criar minha conta</button>
+        <button class="link-acesso" onclick="voltarAcesso()">← Voltar</button>
+      </div>`;
+  } else {
+    $("conteudoAcesso").innerHTML = `
+      <h2 style="font:25px Georgia;color:var(--verde-escuro)">Acesso profissional</h2>
+      <p class="descricao">Área restrita à psicanalista.</p>
+      <div class="form-acesso">
+        <div class="campo"><label>E-mail</label><input id="loginProfEmail" type="email" placeholder="E-mail profissional"></div>
+        <div class="campo"><label>Senha</label><input id="loginProfSenha" type="password" placeholder="Senha"></div>
+        <div class="aviso-demo"><strong>Dados para demonstração:</strong><br>wanessa@exemplo.com<br>Senha: wanessa123</div>
+        <button class="botao" onclick="entrarProfissional()">Entrar no painel</button>
+        <button class="link-acesso" onclick="voltarAcesso()">← Voltar</button>
+      </div>`;
+  }
+}
+
+function mostrarCadastroPaciente() {
+  $("conteudoAcesso").innerHTML = `
+    <h2 style="font:25px Georgia;color:var(--verde-escuro)">Criar conta</h2>
+    <p class="descricao">Preencha seus dados para acessar a área do paciente.</p>
+    <div class="form-acesso">
+      <div class="campo"><label>Nome completo</label><input id="cadNome" placeholder="Seu nome"></div>
+      <div class="campo"><label>E-mail</label><input id="cadEmail" type="email" placeholder="seu@email.com"></div>
+      <div class="campo"><label>Contato</label><input id="cadContato" placeholder="(00) 90000-0000"></div>
+      <div class="campo"><label>Senha</label><input id="cadSenha" type="password" placeholder="Crie uma senha"></div>
+      <button class="botao" onclick="cadastrarPaciente()">Criar conta</button>
+      <button class="link-acesso" onclick="mostrarAcesso('paciente')">← Voltar ao login</button>
+    </div>`;
+}
+
+function cadastrarPaciente() {
+  const nome = $("cadNome").value.trim();
+  const email = $("cadEmail").value.trim().toLowerCase();
+  const contato = $("cadContato").value.trim();
+  const senha = $("cadSenha").value;
+
+  if (!nome || !email || !contato || !senha) {
+    alert("Preencha todos os campos para continuar.");
+    return;
+  }
+  if (contasPacientes.some(c => c.email === email)) {
+    alert("Este e-mail já possui cadastro nesta demonstração.");
+    return;
+  }
+
+  const conta = {nome, email, contato, senha};
+  contasPacientes.push(conta);
+  pacientes.push({nome, contato, tipo:"A definir", situacao:"Ativo", email});
+  contaAtual = conta;
+  abrirAreaPaciente();
+}
+
+function entrarPaciente() {
+  const email = $("loginPacienteEmail").value.trim().toLowerCase();
+  const senha = $("loginPacienteSenha").value;
+  const conta = contasPacientes.find(c => c.email === email && c.senha === senha);
+  if (!conta) {
+    alert("Não encontramos uma conta com esses dados. Confira ou crie seu cadastro.");
+    return;
+  }
+  contaAtual = conta;
+  abrirAreaPaciente();
+}
+
+function entrarProfissional() {
+  const email = $("loginProfEmail").value.trim().toLowerCase();
+  const senha = $("loginProfSenha").value;
+  if (email !== "wanessa@exemplo.com" || senha !== "wanessa123") {
+    alert("Dados incorretos. Use os dados de demonstração exibidos na tela.");
+    return;
+  }
+  $("telaAcesso").style.display = "none";
+  $("areaPaciente").style.display = "none";
+  document.body.classList.add("logado");
+  document.querySelector(".layout").style.display = "grid";
+  abrirPagina("inicio");
+}
+
+function abrirAreaPaciente() {
+  document.body.classList.add("logado");
+  document.querySelector(".layout").style.display = "none";
+  $("areaPaciente").style.display = "block";
+  $("telaAcesso").style.display = "none";
+  $("saudacaoPaciente").textContent = "Olá, " + contaAtual.nome.split(" ")[0] + "!";
+  $("perfilPacienteNome").value = contaAtual.nome;
+  $("perfilPacienteEmail").value = contaAtual.email;
+  $("perfilPacienteContato").value = contaAtual.contato;
+  renderizarMeusAgendamentos();
+  abrirSecaoPaciente("inicio");
+}
+
+function abrirSecaoPaciente(nome) {
+  document.querySelectorAll(".secao-paciente").forEach(s => s.classList.remove("ativa"));
+  $("secao-paciente-" + nome).classList.add("ativa");
+  document.querySelectorAll("[data-secao-paciente]").forEach(b => {
+    b.classList.toggle("active", b.dataset.secaoPaciente === nome);
+  });
+  if (nome === "agendamentos") renderizarMeusAgendamentos();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+document.querySelectorAll("[data-secao-paciente]").forEach(botao => {
+  botao.addEventListener("click", () => abrirSecaoPaciente(botao.dataset.secaoPaciente));
+});
+
+$("formSolicitar").addEventListener("submit", function(e) {
+  e.preventDefault();
+  if (!contaAtual) return;
+
+  const data = $("dataPreferida").value;
+  const horario = $("horarioPreferido").value;
+  const tipo = $("modalidadePaciente").value;
+  if (!data || !horario) {
+    alert("Informe a data e o período de preferência.");
+    return;
+  }
+
+  solicitacoes.unshift({
+    tipo:"Novo atendimento",
+    modalidade:tipo,
+    nome:contaAtual.nome,
+    email:contaAtual.email,
+    hora:"Solicitação enviada agora",
+    dataDesejada:data,
+    horarioDesejado:horario,
+    descricao:$("mensagemPaciente").value.trim() || "Sem mensagem adicional."
+  });
+  $("formSolicitar").reset();
+  renderizarInicio();
+  alert("Sua solicitação foi enviada! A profissional poderá visualizá-la no painel.");
+  abrirSecaoPaciente("agendamentos");
+});
+
+function renderizarMeusAgendamentos() {
+  if (!contaAtual) return;
+  const meusPedidos = solicitacoes.filter(s => s.email === contaAtual.email);
+  const minhasConsultas = consultas.filter(c => c.email === contaAtual.email || c.nome === contaAtual.nome);
+
+  let html = "";
+  minhasConsultas.forEach(c => {
+    html += `<div class="item-paciente"><strong>Consulta ${c.tipo.toLowerCase()}</strong>
+      <small>${c.data || "Data não informada"} às ${c.hora}</small>
+      <small>Status: ${c.status}</small></div>`;
+  });
+  meusPedidos.forEach(s => {
+    html += `<div class="item-paciente"><strong>${s.tipo === "Novo atendimento" ? "Solicitação de atendimento" : s.tipo}</strong>
+      <small>Preferência: ${s.dataDesejada || "A combinar"} — ${s.horarioDesejado || ""}</small>
+      <small>Status: Aguardando análise da profissional</small></div>`;
+  });
+  $("listaMeusAgendamentos").innerHTML = html || "<div class='card-paciente'><p>Você ainda não possui consultas ou solicitações.</p><button class='botao' onclick=\"abrirSecaoPaciente('solicitar')\">Solicitar atendimento</button></div>";
+}
+
+function sairConta() {
+  contaAtual = null;
+  $("areaPaciente").style.display = "none";
+  document.querySelector(".layout").style.display = "none";
+  document.body.classList.remove("logado");
+  $("telaAcesso").style.display = "grid";
+  voltarAcesso();
+}
+
+// Permite que a profissional veja também os novos pedidos enviados pelos pacientes.
+const renderizarSolicitacoesOriginal = renderizarSolicitacoes;
+renderizarSolicitacoes = function() {
+  const filtro = $("filtroSolicitacao").value;
+  const lista = solicitacoes
+    .map((s,i) => ({...s, indice:i}))
+    .filter(s => filtro === "Todas" || s.tipo === filtro);
+
+  $("listaSolicitacoes").innerHTML = lista.length
+    ? lista.map(s => `
+      <div class="item-solicitacao">
+        <i class="ponto-prioridade ${s.tipo === "Prioridade" ? "" : "ponto-normal"}"></i>
+        <div>
+          <strong class="${s.tipo === "Prioridade" ? "prioridade" : ""}">${s.tipo}</strong>
+          <small>Paciente: ${s.nome}</small>
+          ${s.modalidade ? `<small>Modalidade: ${s.modalidade}</small>` : ""}
+          <small>${s.hora}</small>
+          ${s.dataDesejada ? `<small>Preferência: ${s.dataDesejada} — ${s.horarioDesejado}</small>` : ""}
+          <p class="subtexto">${s.descricao}</p>
+        </div>
+        <button class="botao botao-secundario" onclick="concluirSolicitacao(${s.indice})">Concluir</button>
+      </div>`).join("")
+    : "<p>Não há solicitações nesta categoria.</p>";
+};
+
+// Mantém o acesso inicial na tela de escolha de perfil.
+document.body.classList.remove("logado");
+
+// INICIALIZAÇÃO
+
+renderizarInicio();
+renderizarAgenda();
+renderizarSolicitacoes();
+renderizarPacientes();
+
+</script>
+
+</body>
+</html>
+
